@@ -8,13 +8,17 @@ let cardOrd = [...Array(24).keys()];
 let prevSelectionId = null;
 let prevSelectionElement = null;
 
+// status
+let currentCountElement = document.getElementById("count_click");
+let avgCountElement = document.getElementById("count_avg");
+let lastCountElement = document.getElementById("count_last");
+
+
 function load_cards(){
 
     cardIds.forEach((id)=>{
         const singCard = cardTemplate.content.firstElementChild.cloneNode(true);
         const dueCard = singCard.cloneNode(true);
-        
-        
         console.log("processing the current id:", id);
         singCard.classList.add(randomPos());
         dueCard.classList.add(randomPos());
@@ -47,7 +51,10 @@ function randomPos(){
 
 function flipEvent(event){
     const target = event.target;
-    const imgElement = target.querySelector("#img_load");
+    let imgElement = target.querySelector("#img_load");
+    if(!imgElement){
+        imgElement = target;
+    }
     const currentSelectionId = imgElement.getAttribute("xid");
     console.log("img element fetched", imgElement)
     imgElement.classList.remove("hidden");
@@ -58,8 +65,12 @@ function flipEvent(event){
         if( prevSelectionId == currentSelectionId){
             // got a point
             // TODO increment point
-            prevSelectionElement.setAttribute("src", "./Assets/win.gif");
-            imgElement.setAttribute("src", "./Assets/win.gif");
+            setTimeout(()=>{
+                prevSelectionElement.setAttribute("src", "./Assets/win.gif");
+                imgElement.setAttribute("src", "./Assets/win.gif");
+            }, 100);
+
+
 
         }
         else{
