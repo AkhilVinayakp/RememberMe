@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.33.0/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Smythe&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="flex justify-center h-screen items-center py-32">
+        <div class="card w-[1256px] h-full glass">
+            <div class="card-body">
+                <div class="flex  gap-24">
+                    <div class="side-content flex flex-col gap-4">
+                        <h2 class="text-3xl mb-8">ColorGame</h2>
+                        <div class="btn gap-2 ">
+                            <div id="count_g" class="badge badge-secondary">00</div> Games
+                        </div>
+                        <div class="btn gap-2 ">
+                            <div id="count_w" class="badge badge-secondary">00</div> Wins
+                        </div>
+                        <div class="btn gap-2 ">
+                            <div id="count_l" class="badge badge-secondary">00</div> Losses
+                        </div>
+                        <div class="card-actions justify-end mt-12">
+                            <button id="clear" class="btn btn-primary">Clear All Status</button>
+                        </div>
+                </div> 
+                <div class="main-content flex flex-col ml-2 gap-12">
+                        <!-- <div class="text-2xl"> Pick A color to Start</div> -->
+                        <div id="pContainer" class="flex flex-row justify-between gap-4 flex-wrap">
+                            <template id="card-single">
+                                <div class="w-32 h-32 glass btn">
+                                    <figure class="bg-card"><img id="img_load" alt="car!"/></figure>
+                                </div>
+                            </template>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+
+          </div>
+    <script src="./app.js"></script>
+</body>
+</html>
