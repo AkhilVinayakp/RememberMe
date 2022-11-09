@@ -18,7 +18,7 @@
             <div class="card-body">
                 <div class="flex  gap-24">
                     <div class="side-content flex flex-col gap-4">
-                        <h2 class="text-3xl mb-8">DoItYourSelf</h2>
+                        <h2 class="text-3xl mb-4 text-violet-800">DoItYourSelf</h2>
                         <div class="btn gap-2 ">
                            Current<div id="count_click" class="badge badge-secondary">00</div>
                         </div>
@@ -28,7 +28,27 @@
                         <div class="btn gap-2 ">
                             Last Game<div id="count_last" class="badge badge-secondary">00</div>
                         </div>
-                        <div class="card-actions justify-end mt-12">
+                        <div class="grid grid-flow-col gap-5 text-center auto-cols-max px-2">
+                            <div class="flex flex-col p-2 bg-neutral rounded-box text-neutral-content">
+                                <span class="countdown font-mono text-5xl">
+                                  <span id="timer_min" style="--value:0"></span>
+                                </span>
+                                min
+                              </div> 
+                              <div class="flex flex-col p-2 bg-neutral rounded-box text-neutral-content">
+                                <span class="countdown font-mono text-5xl">
+                                  <span id="timer_sec" style="--value:0"></span>
+                                </span>
+                                sec
+                              </div>
+                        </div>
+                        <div class="btn  gap-2">
+                            Last Time in<div id="count_last" class="badge badge-secondary">00</div>
+                        </div>
+                        <div class="btn gap-2">
+                            Avg Time<div id="count_last" class="badge badge-secondary">00</div>
+                        </div>
+                        <div class="card-actions justify-end px-2 mt-4">
                             <button id="clear" class="btn btn-primary">Clear All Status</button>
                         </div>
                 </div> 

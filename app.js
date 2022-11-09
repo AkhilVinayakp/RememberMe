@@ -9,9 +9,17 @@ let prevSelectionId = null;
 let prevSelectionElement = null;
 
 // status
-let currentCountElement = document.getElementById("count_click");
-let avgCountElement = document.getElementById("count_avg");
-let lastCountElement = document.getElementById("count_last");
+const currentCountElement = document.getElementById("count_click");
+const avgCountElement = document.getElementById("count_avg");
+const lastCountElement = document.getElementById("count_last");
+const timerMinElement = document.getElementById("timer_min");
+const timerSecElement = document.getElementById("timer_sec");
+let timerMin = 0;
+let timerSec = 0;
+let runner = null; // setIntervel object
+let currentCount = 0;
+let avgcount = 0;
+let currentPoint = 0;
 
 
 function load_cards(){
@@ -50,6 +58,12 @@ function randomPos(){
 
 
 function flipEvent(event){
+    if(!prevSelectionId){
+        //start timer. very first choice by the user
+        setTimerRunning();
+    }
+    currentCount += 1;
+    currentCountElement.textContent = currentCount;
     const target = event.target;
     let imgElement = target.querySelector("#img_load");
     if(!imgElement){
@@ -58,6 +72,7 @@ function flipEvent(event){
     const currentSelectionId = imgElement.getAttribute("xid");
     console.log("img element fetched", imgElement)
     imgElement.classList.remove("hidden");
+
     if(prevSelectionId){
         
         // console.log(currentSelectionId, typeof currentSelectionId);
@@ -69,18 +84,28 @@ function flipEvent(event){
                 prevSelectionElement.setAttribute("src", "./Assets/win.gif");
                 imgElement.setAttribute("src", "./Assets/win.gif");
             }, 100);
-
-
-
         }
         else{
+            prevSelectionElement.classList.add("hidden");
             prevSelectionElement = imgElement;
             prevSelectionId = currentSelectionId;
-            // prevSelectionElement.classList.add("hidden")
         }
     }
     else{
         prevSelectionElement = imgElement;
         prevSelectionId = currentSelectionId;
     }
+}
+
+function setTimerRunning(){
+    runner = setInterval(()=>{
+        timerSec += 1;
+        if(timerSec == 60){
+            timerMin += 1;
+            timerSec = 0;
+        }
+        timerMinElement.setAttribute("style", `--value:${timerMin}`);
+        timerSecElement.setAttribute("style", `--value:${timerSec}`);
+
+    }, 1000)
 }
