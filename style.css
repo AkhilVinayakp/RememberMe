@@ -38,3 +38,18 @@ body{
 .univ{
     background:linear-gradient(0deg, rgba(14, 1, 9, 0.476), rgba(32, 28, 27, 0.523)), url(./Assets/bg4.jpg);
 }
+
+.info{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    border: 6px solid black;
+    border-radius: 50%;
+    
+}
+.info img{
+    width: 56px;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
