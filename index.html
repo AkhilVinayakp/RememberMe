@@ -11,24 +11,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Smythe&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" href="style.css">
-    <style>
-        .findout{
-            pointer-events: none;
-            background-color: blueviolet;
-        }
-        .img_thanos{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        
-            width: 900px;
-            height: 100%;
-        }
-    </style>
 </head>
 <body>
-    <div class="flex justify-center h-screen items-center py-32">
-        <div class="card w-[1256px] h-full glass">
+    <div  class="flex justify-center h-screen items-center py-32">
+        <div id="main_element" class="card w-[1256px] h-full glass">
             <div class="card-body">
                 <div class="flex  gap-24">
                     <div class="side-content flex flex-col gap-4">
@@ -57,13 +43,13 @@
                               </div>
                         </div>
                         <div class="btn  gap-2">
-                            Last Time in<div id="count_last" class="badge badge-secondary">00</div>
+                            Last Time in<div id="time_last" class="badge badge-secondary">00</div>
                         </div>
                         <div class="btn gap-2">
-                            Avg Time<div id="count_last" class="badge badge-secondary">00</div>
+                            Avg Time<div id="avg_time" class="badge badge-secondary">00</div>
                         </div>
-                        <div class="card-actions justify-end px-2 mt-4">
-                            <button id="clear" class="btn btn-primary">Clear All Status</button>
+                        <div class=" px-2 mt-4">
+                            <button id="clear" class="btn btn-md bg-black btn-outline btn-warning">Clear All Status Data</button>
                         </div>
                 </div> 
                 <div class="main-content flex flex-col ml-2 gap-12">

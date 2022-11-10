@@ -1,6 +1,7 @@
 window.onload = load_cards
 const cardContainer = document.getElementById("pContainer");
 const cardTemplate = document.getElementById("card-single");
+const mainElement = document.getElementById("main_element");
 let cardIds = [...Array(12).keys()];
 let cardOrd = [...Array(24).keys()];
 // test var
@@ -15,15 +16,48 @@ const avgCountElement = document.getElementById("count_avg");
 const lastCountElement = document.getElementById("count_last");
 const timerMinElement = document.getElementById("timer_min");
 const timerSecElement = document.getElementById("timer_sec");
+const timeLastElement = document.getElementById("time_last");
+const timeAvgElement = document.getElementById("avg_time")
 let timerMin = 0;
 let timerSec = 0;
 let runner = null; // setIntervel object
+let runner_count = 0;  // used in Runner
 let currentCount = 0;
-let avgcount = 0;
 let currentPoint = 0;
 let defeatCount = 0; // keep track the count of the found element .
 // if it's reach 12 all cards are found and stop timer and save to local storage.
 
+
+let avgClickCount = localStorage.getItem("acc");
+let totalgames = localStorage.getItem("gc");
+let lastClickCount = localStorage.getItem("lcc");
+let timeLast = localStorage.getItem("tlp");
+let timeavg = localStorage.getItem('tavg');
+
+if(!avgClickCount){
+    avgCountElement.textContent = "00"
+}
+else{
+    avgClickCount = Number(avgClickCount);
+    totalgames = Number(totalgames);
+    avgCountElement.textContent = avgClickCount;
+}
+if(!lastClickCount){
+    lastCountElement.textContent = "00";
+}
+else{
+    lastClickCount = Number(lastClickCount);
+    lastCountElement.textContent = lastClickCount;
+}
+if(timeLast){
+    timeLast = Number(timeLast);
+    timeLastElement.textContent = convertToMnts(timeLast);
+}
+else timeLastElement.textContent = "00";
+if(timeavg){
+    timeavg = Number(timeavg);
+    timeAvgElement.textContent = convertToMnts(timeavg);
+}
 
 function load_cards(){
 
@@ -106,11 +140,18 @@ function flipEvent(event){
                 // game end
                 clearInterval(runner);
                 cardContainer.textContent = "";
-                let winNode = document.createElement("img");
-                winNode.setAttribute("src",".//Assets/thanos.gif");
-                cardContainer.classList = "";
-                cardContainer.classList.add('img_thanos')
-                cardContainer.append(winNode);
+                mainElement.classList.remove("glass");
+                mainElement.classList.add("bg_settings");
+                // storing all values
+                totalgames += 1;
+                avgClickCount = Math.floor((avgClickCount * (totalgames-1)+ currentCount)/totalgames);
+                timeavg = Math.floor((timeavg*(totalgames-1) + runner_count)/totalgames);
+                localStorage.setItem('gc', totalgames);
+                localStorage.setItem("tlp", runner_count);
+                localStorage.setItem("lcc", currentCount);
+                localStorage.setItem("tavg", timeavg);
+                localStorage.setItem("acc", avgClickCount);
+
             }
 
         }
@@ -130,6 +171,7 @@ function flipEvent(event){
 
 function setTimerRunning(){
     runner = setInterval(()=>{
+        runner_count += 1;
         timerSec += 1;
         if(timerSec == 60){
             timerMin += 1;
@@ -139,4 +181,9 @@ function setTimerRunning(){
         timerSecElement.setAttribute("style", `--value:${timerSec}`);
 
     }, 1000)
+}
+
+
+function convertToMnts(value){
+    
 }
