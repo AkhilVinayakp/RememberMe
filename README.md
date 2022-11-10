@@ -1,5 +1,5 @@
 # RememberMe
- online card Remembering game in JS
+ Online card Remembering game in JS
 - Match all the cards to win
 # Preview
 [Live](https://rememberme-v0.netlify.app/)
@@ -9,7 +9,7 @@
 - select cards to find out hidden
 ![selection](./Assets/Preview2.png)
 
-- find out all mathing cards to wind. Reload to restart the game, previous data will be available.
+- find out all mathing cards to win. Reload to restart the game, previous data will be available.
 ![final](./Assets/Preview3.png)
 
 
