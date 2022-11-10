@@ -7,7 +7,7 @@
 }
 body{
     min-height:100%;
-    background:linear-gradient(0deg, rgba(222, 22, 145, 0.762), rgba(3, 157, 52, 0.3)), url(./Assets/bg3.jpg);
+    background:linear-gradient(0deg, rgba(241, 86, 182, 0.601), rgba(235, 93, 61, 0.523)), url(./Assets/bg4.jpg);
     background-size:cover;
     
 }
@@ -33,4 +33,8 @@ body{
     background-image: url(./Assets/thanos.gif);
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+.univ{
+    background:linear-gradient(0deg, rgba(14, 1, 9, 0.476), rgba(32, 28, 27, 0.523)), url(./Assets/bg4.jpg);
 }

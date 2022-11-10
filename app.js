@@ -17,7 +17,8 @@ const lastCountElement = document.getElementById("count_last");
 const timerMinElement = document.getElementById("timer_min");
 const timerSecElement = document.getElementById("timer_sec");
 const timeLastElement = document.getElementById("time_last");
-const timeAvgElement = document.getElementById("avg_time")
+const timeAvgElement = document.getElementById("avg_time");
+const clearButtonElement = document.getElementById("clear");
 let timerMin = 0;
 let timerSec = 0;
 let runner = null; // setIntervel object
@@ -58,6 +59,7 @@ if(timeavg){
     timeavg = Number(timeavg);
     timeAvgElement.textContent = convertToMnts(timeavg);
 }
+else timeAvgElement.textContent = "00";
 
 function load_cards(){
 
@@ -65,7 +67,7 @@ function load_cards(){
         const singCard = cardTemplate.content.firstElementChild.cloneNode(true);
         const dueCard = singCard.cloneNode(true);
         let temp;
-        console.log("processing the current id:", id);
+        // console.log("processing the current id:", id);
         temp = randomPos();
         singCard.classList.add(temp.ord_class);
         singCard.setAttribute("id", temp._id);
@@ -84,7 +86,17 @@ function load_cards(){
 
         
     })
-    console.log("cardOrder after:", cardOrd);
+    // console.log("cardOrder after:", cardOrd);
+    clearButtonElement.addEventListener("click", (event)=>{
+        localStorage.clear();
+        avgCountElement.textContent = "00";
+        lastCountElement.textContent = "00";
+        timeLastElement.textContent = "00";
+        timeAvgElement.textContent = "00";
+        currentCountElement.textContent = "00";
+        timerMinElement.setAttribute("style", `--value:${0}`);
+        timerSecElement.setAttribute("style", `--value:${0}`);
+    })
 
 
 
@@ -94,7 +106,7 @@ function randomPos(){
     let idc = Math.floor(Math.random()*cardOrd.length);
     let random_position = cardOrd[idc];
     cardOrd.splice(idc, 1);
-    console.log("generated random position is :", `order-${random_position}`);
+    // console.log("generated random position is :", `order-${random_position}`);
     return {
         ord_class : `order-${random_position}`,
         _id : random_position
@@ -106,6 +118,7 @@ function flipEvent(event){
     if(!prevSelectionId){
         //start timer. very first choice by the user
         setTimerRunning();
+        clearButtonElement.setAttribute("disabled", "true")
     }
     currentCount += 1;
     currentCountElement.textContent = currentCount;
@@ -118,7 +131,7 @@ function flipEvent(event){
         return;
     }
     const currentSelectionId = imgElement.getAttribute("xid");
-    console.log("img element fetched", imgElement)
+    // console.log("img element fetched", imgElement)
     imgElement.classList.remove("hidden");
 
     if(prevSelectionId){
@@ -151,6 +164,13 @@ function flipEvent(event){
                 localStorage.setItem("lcc", currentCount);
                 localStorage.setItem("tavg", timeavg);
                 localStorage.setItem("acc", avgClickCount);
+                // update the ui components
+                avgCountElement.textContent = avgClickCount;
+                timeAvgElement.textContent = convertToMnts(timeavg);
+                lastCountElement.textContent = currentCount;
+                timeLastElement.textContent = convertToMnts(runner_count);
+                clearButtonElement.removeAttribute("disabled");
+                document.body.classList.add('univ')
 
             }
 
