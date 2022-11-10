@@ -185,5 +185,10 @@ function setTimerRunning(){
 
 
 function convertToMnts(value){
-    
+    let divn = value/60;
+    let sec = divn - Math.floor(divn);
+    let mnts = divn - sec;
+    sec = sec * 60;
+    sec = sec.toFixed();
+    return `${mnts}:${sec}`;
 }
